@@ -87,7 +87,7 @@
 					<span v-if="row.audit_status==3">未通过</span>
 				</div>
 			</el-table-column>
-			<el-table-column  label="操作"  show-overflow-tooltip :context="_self" inline-template align="center" show-overflow-tooltip>
+			<el-table-column  label="操作"  show-overflow-tooltip :context="_self" inline-template align="center">
 				<div>
 					<el-button class="toView" v-if="row.audit_status==3" @click="toView(row.id)">查看</el-button>
 					<el-button class="toView" v-if="row.audit_status==1" @click="toRefused(row.id)">拒绝</el-button>
@@ -135,19 +135,7 @@
 	import {getRegisterAudit, getRefuseData, throughReview, getRoleList, getReviewStatus} from "../action/action.js"
 
 	export default{
-		vuex: {
-            getters: {
-
-
-						},
-					actions: {
-						//getRegisterAudit,
-						// getRefuseData,
-						// throughReview,
-						// getRoleList,
-						// getReviewStatus
-					}
-      },
+	
     created () {
            this.getData(1);
            this.getBasic();
@@ -191,15 +179,13 @@
         			multipleSelection:[],
         			idArr:[],  //批量通过或者批量拒绝的id
         			currentPage:1,
-        			listLoading:true,
+        			listLoading: false,
         			roleData:[],
         			reviewData:[],
         			exceldialogVisible:false, // 导出弹层
         			excelUrl:''
 
 				}
-
-
 		},
 		methods:{
 			excelSuccess(){
@@ -298,7 +284,6 @@
         			arr.push(item.id);
         		})
         		this.idArr=arr;
-
         		if (val=='') {
         			this.idArr = [];
         		}
@@ -310,57 +295,58 @@
 				}
 			},
 			getData(page){   //获取列表
+			
 				var obj=this.formData;
-				NProgress.start();
-				getRegisterAudit(obj,page,(res)=>{
-					if (res.success) {
-						NProgress.done();
-						// this.$store.state.common.user_infos = res.data.list;
-						this.tableData=res.data.list;
-    				this.number=res.data.paginate.page_count;
-    				this.recordCount=res.data.paginate.record_count;
-    				this.listLoading = false;
-            }else{
-            	this.tableData=[];
-                if(res.code=='error'){
-                    this.$router.push('/login')
-                }else if(res.code=='404'){
-                	this.$router.push('/404')
-                }else{
-                    this.$message.error(res.msg);
-                }
-            }
-				});
+				// NProgress.start();
+				// getRegisterAudit(obj,page,(res)=>{
+				// 	if (res.success) {
+				// 		// NProgress.done();
+				// 		// this.$store.state.common.user_infos = res.data.list;
+				// 	this.tableData=res.data.list;
+    			// 	this.number=res.data.paginate.page_count;
+    			// 	this.recordCount=res.data.paginate.record_count;
+    			// 	this.listLoading = false;
+				// 	}else{
+				// 		this.tableData=[];
+				// 		if(res.code=='error'){
+				// 			this.$router.push('/login')
+				// 		}else if(res.code=='404'){
+				// 			this.$router.push('/404')
+				// 		}else{
+				// 			this.$message.error(res.msg);
+				// 		}
+				// 	}
+				// });
 			},
 			getBasic(){ //获取基础数据，包括身份筛选数据，状态筛选数据
-				getRoleList((res)=>{
-					if (res.success) {
-						this.roleData=res.data;
-                    }else{
-                    	this.roleData=[];
-                        if(res.code=='error'){
-                            this.$router.push('/login')
-                        }else if(res.code=='404'){
-                        	this.$router.push('/404')
-                        }else{
-                            this.$message.error(res.msg);
-                        }
-                    }
-				});
-				getReviewStatus((res)=>{
-					if (res.success) {
-						this.reviewData=res.data;
-                    }else{
-                    	this.reviewData=[];
-                        if(res.code=='error'){
-                            this.$router.push('/login')
-                        }else if(res.code=='404'){
-                        	this.$router.push('/404')
-                        }else{
-                            this.$message.error(res.msg);
-                        }
-                    }
-				})
+				// getRoleList((res)=>{
+				// 	if (res.success) {
+				// 		this.roleData=res.data;
+                //     }else{
+                //     	this.roleData=[];
+                //         if(res.code=='error'){
+                //             this.$router.push('/login')
+                //         }else if(res.code=='404'){
+                //         	this.$router.push('/404')
+                //         }else{
+                //             this.$message.error(res.msg);
+                //         }
+                //     }
+				// });
+				// getReviewStatus((res)=>{
+				// 	if (res.success) {
+				// 		this.reviewData=res.data;
+                //     }else{
+                //     	this.reviewData=[];
+                //         if(res.code=='error'){
+                //             this.$router.push('/login')
+                //         }else if(res.code=='404'){
+                //         	this.$router.push('/404')
+                //         }else{
+                //             this.$message.error(res.msg);
+                //         }
+                //     }
+				// })
 			},
 			getcid(val){//获取渠道信息
 				this.formData.channel_id = valid;

@@ -41,10 +41,10 @@
 							<template slot="title">{{item.name}}</template>
 							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
 						</el-submenu> -->
-						<el-menu-item :index="item.path" class="mouseover" v-if="item.leaf" :class="$route.path==item.path?'now-node':''"
+						<el-menu-item :index="item.path" :key="item.path" class="mouseover" v-if="item.leaf" :class="$route.path==item.path?'now-node':''"
 						 style="background-color: #eef1f6;color: #48576a; "> <i :class="item.iconCls"></i>{{item.name}}</el-menu-item>
 
-						<el-submenu :index="index" v-if="!item.leaf">
+						<el-submenu :index="index" v-if="!item.leaf" :key="item.leaf">
 					        <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
 					        <el-menu-item-group v-for="child in item.children" :key="child.path">
 					          <li class="line-son" @click="$router.push(child.path)"  :class="$route.path==child.path?'now-node':''"><i :class="child.iconCls"></i>{{child.name}}</li>
@@ -58,7 +58,7 @@
 				</el-menu>
 				<!--导航菜单-折叠后-->
 				<ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-					<li v-for="(item,index) in childrenRouter" v-if="!item.hidden" class="el-submenu item">
+					<li v-for="(item,index) in childrenRouter" v-if="!item.hidden" class="el-submenu item" :key="item">
 						<template v-if="!item.leaf">
 							<div class="el-submenu__title" :class="$route.path==item.path?'now-node':''" style="padding-left: 20px;"
 							@mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>

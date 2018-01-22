@@ -20,9 +20,12 @@
 </template>
 
 <script>
-  
+  import logoSrc from '../assets/avatar.jpg'
   //import NProgress from 'nprogress'
   export default {
+    created(){
+      console.log(logoSrc)
+    },
     data() {
       return {
         logining: false,
@@ -53,8 +56,8 @@
             id: 1,
             username: 'admin',
             password: '123456',
-            avatar: 'https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/user.png',
-            name: '张某某'
+            avatar: logoSrc,
+            name: '程某某'
           }
           sessionStorage.setItem('user', JSON.stringify(user));
 
