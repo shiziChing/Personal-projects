@@ -4,8 +4,8 @@
 import babelpolyfill from 'babel-polyfill'  //转码兼容IE
 import Vue from 'vue'
 import App from './App'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import './assets/common/common.css'
 import './assets/common/iconSelect.css'
 
