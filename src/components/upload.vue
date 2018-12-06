@@ -80,7 +80,7 @@ var _btn,  //按钮
 	    	dorpTest(){
 	    		this.sliceFile()
 	    	},
-	      	init:function(){
+	      	init(){
 
 
 	      		var that = this;
@@ -96,7 +96,7 @@ var _btn,  //按钮
 				
 			},
 
-			sliceFile:function(){
+			sliceFile(){
 				partList = [];
 	      		var upUrl = ad_refact_url + 'upload/uploadpart';
 	    		var config = {exts:'zip|jpg|png|jpeg|apk|sql|bin|conf|dmg|mp4'};
@@ -198,7 +198,7 @@ var _btn,  //按钮
 
 	        },
 
-			setForm:function(num){
+			setForm(num){
 				var start = num * _shardSize,
 					end = Math.min(_fileSize, start + _shardSize);
 
@@ -229,7 +229,7 @@ var _btn,  //按钮
 				return form;
 			},
 
-			upFile:function(){
+			upFile(){
 				if(_errored>0 || _abort) return;
 
 	            for(var j=0;j<_fileForms.length;j++){
@@ -246,7 +246,7 @@ var _btn,  //按钮
 	            }
 
 			},
-			timedGetText:function( url, time, callback ){ //发送http请求
+			timedGetText( url, time, callback ){ //发送http请求
 			    var request = new XMLHttpRequest();
 			    var timeout = false;
 			    var timer = setTimeout( function(){
@@ -273,7 +273,7 @@ var _btn,  //按钮
 
 			    request.send( postData );
 			},
-			ajaxUp:function(formObject){
+			ajaxUp(formObject){
 				// console.log(formObject);
 				var form = formObject.form;
 				// console.log(form);
@@ -356,7 +356,7 @@ var _btn,  //按钮
 				};
 
 			},
-			showTip:function(tip,flag){
+			showTip(tip,flag){
 				if(flag == 'success' || flag == 'failed' || flag == 'error' || flag == 'cancel'){
 					//_btn.disabled = false;
 				}
@@ -367,7 +367,7 @@ var _btn,  //按钮
 				}
 			},
 
-			tipDisplay:function(tip,flag){
+			tipDisplay(tip,flag){
 				if(!document.getElementById(_file.id+'-tip')) {
 					this.createTipDiv();
 				}
@@ -392,7 +392,7 @@ var _btn,  //按钮
 					document.getElementById(_file.id+'-process-bg').style.display = 'none';
 				}
 			},
-			createTipDiv:function(){
+			createTipDiv(){
 				var tipDiv = document.createElement('DIV');
 					tipDiv.style.position = 'fixed';
 					tipDiv.style.right='0';
@@ -411,7 +411,7 @@ var _btn,  //按钮
 					tipDiv.innerHTML = tipHTML;
 				document.body.appendChild(tipDiv);
 			},
-			createXMLHttpRequest:function() {
+			createXMLHttpRequest() {
 		    	var XMLHttpReq;
 			    try {
 			        XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");//IE高版本创建XMLHTTP

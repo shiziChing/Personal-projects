@@ -112,17 +112,17 @@
 			this.childrenRouter = JSON.parse(sessionStorage.getItem('router'));
 			var keyValue = sessionStorage.getItem('key');
 		    this.activeIndex = keyValue==null?2:keyValue;
-
+			console.log(this.getMineBaseMsg)
 		},
 		created() {
 			// this.$store.dispatch('getMineBaseApi');
 			console.log(this)
 		},
 		computed: {
-    ...mapGetters([
-      'getMineBaseMsg'
-    ])
-	},
+			...mapGetters([
+				'getMineBaseMsg'
+			])
+		},
 		data() {
 			return {
 				sysName:'逍遥',
@@ -317,9 +317,11 @@
 			}
 			.logo-width{
 				width:230px;
+				transition: all 0.5s;
 			}
 			.logo-collapse-width{
-				width:60px
+				width:60px;
+				transition: all 0.5s;
 			}
 			.tools{
 				padding: 0px 23px;
@@ -353,6 +355,7 @@
 				.qian{
 					width: auto!important;
 					overflow: auto!important;
+					transition: all 0.5s;
 				}
 				.collapsed{
 					width:60px;
