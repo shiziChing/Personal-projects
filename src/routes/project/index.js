@@ -86,7 +86,7 @@ import echarts from '@/views/charts/echarts.vue'
 // ]
 
 
-let routes = [
+const routes = [
     {
         path: '/login',
         component: Login,

@@ -23,14 +23,14 @@
 //showType ：1，方形上传  2，按钮上传 3， 拖拽上传
 
 
-//接口地址  by  cheng
-var ad_refact_urls = {
-	test: "http://mos.datudev.net/",  //测试服
-	pre: "http://pre-mos.datuhongan.com/",  //预发
-	line: "http://mos.datuhongan.com/"   //线上
-};
-var ad_refact_url = ad_refact_urls.test;
-var _btn,  //按钮
+	//接口地址  by  cheng
+	const ad_refact_urls = {
+		test: "http://mos.datudev.net/",  //测试服
+		pre: "http://pre-mos.datuhongan.com/",  //预发
+		line: "http://mos.datuhongan.com/"   //线上
+	};
+	const ad_refact_url = ad_refact_urls.test;
+	let _btn,  //按钮
 		_showTip, //展示提示方法
 		_file, //file控件
 		_shardSize = 5 * 1024 * 1024, //每个碎片大小
@@ -60,7 +60,6 @@ var _btn,  //按钮
 
 
 	export default {
-
 	    name: 'Upload',
 	  	props: ["message", "showButton", "disabled", "showType"],
 	    mounted() {
@@ -81,8 +80,6 @@ var _btn,  //按钮
 	    		this.sliceFile()
 	    	},
 	      	init(){
-
-
 	      		var that = this;
 				var fileid = 'upfile-'+parseInt(Math.random()*100000);
 				_file = document.createElement('input');
@@ -152,10 +149,7 @@ var _btn,  //按钮
 						return;
 					}
 				};
-
 				this.showTip('文件准备中...','notice');
-
-
 				_fileObj = _file.files[0],  //文件对象
 				_fileSize = _fileObj.size;
 			    _shardCount = Math.ceil(_fileSize / _shardSize);  //总片数
@@ -171,7 +165,7 @@ var _btn,  //按钮
 			    sessionStorage.setItem('lastFileName', lastFileName)
 
 			    this.showTip('文件准备上传','notice');
-	            this.timedGetText(initPartStrTest,5000,function(res){
+	            this.timedGetText(initPartStrTest, 5000, function(res){
 	            	res=JSON.parse(res);
 	                if(res.code==0){
 	                	// console.log(res.data);
@@ -200,7 +194,7 @@ var _btn,  //按钮
 
 			setForm(num){
 				var start = num * _shardSize,
-					end = Math.min(_fileSize, start + _shardSize);
+				end = Math.min(_fileSize, start + _shardSize);
 
 				var form = new FormData();
 				form.append("file", _fileObj.slice(start,end));  //slice方法用于切出文件的一部分
@@ -228,10 +222,8 @@ var _btn,  //按钮
 				}
 				return form;
 			},
-
 			upFile(){
-				if(_errored>0 || _abort) return;
-
+				if(_errored>0 || _abort) return
 	            for(var j=0;j<_fileForms.length;j++){
 	                if(_upNum < _async){
 	                    if(_fileForms[j].status == 0){
@@ -244,7 +236,6 @@ var _btn,  //按钮
 	                    break;
 	                }
 	            }
-
 			},
 			timedGetText( url, time, callback ){ //发送http请求
 			    var request = new XMLHttpRequest();
