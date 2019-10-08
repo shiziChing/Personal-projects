@@ -25,9 +25,9 @@
 
 	//接口地址  by  cheng
 	const ad_refact_urls = {
-		test: "http://mos.datudev.net/",  //测试服
-		pre: "http://pre-mos.datuhongan.com/",  //预发
-		line: "http://mos.datuhongan.com/"   //线上
+		test: "http://test.net/",  //测试服
+		pre: "http://pre.com/",  //预发
+		line: "http://online.com/"   //线上
 	};
 	const ad_refact_url = ad_refact_urls.test;
 	let _btn,  //按钮
